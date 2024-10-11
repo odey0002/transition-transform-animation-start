@@ -35,3 +35,186 @@
 	background-color: #e89380;
 	/*orange*/
 }
+
+/* transition-property:all; Transition property describes which CSS property changes will be smoothed overtime, we can specify a single property, or a list by seperating with commas */
+.transition .b1 { 
+	/* transition-property: background-color, border-radius;
+	transition-duration: 1s; */
+	transition-property: all;
+
+}
+
+.transition .b1:hover {
+	background-color: black;
+	border-radius: 50%;
+}
+
+.transition .b2 {
+	transition-property: width;
+	transition-duration: 1s;
+
+	/* Timing function changes the speed and progression of the transition. We can start slow and end abruptly, or start abruptly and end slowly. We can define curves with the bezier */
+	/* transition-timing-function: ease;
+	transition-timing-function: linear;
+	transition-timing-function: ease-in;
+	transition-timing-function: ease-out;
+	transition-timing-function: ease-in-out; */
+	transition-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+}
+
+.transition .b2:hover {
+	width: 500px;
+}
+
+.transition .b3 {
+    transition-property: width;
+	transition-duration: 2s;
+	/* Transition delay causes the transition to start later */
+	transition-delay: 1s;
+}
+
+.transition .b3:hover {
+     width: 600px;
+}
+
+.transition .b4 {
+	/* linear means the whole thing moves at once, instead of ease.  */
+	/* transition: width 0.5s ease-in 0.5, height 1s linear 1.5s;
+	transition: width 0.5s ease-out 0.5, height 0.5s ease-out 0.5s; */
+	transition: all 0.5s ease-in 0.5s;
+}
+
+.transition .b4:hover {
+	width: 500px;
+	height: 500px;
+	background: green;
+}
+
+/* TRANSFORM */
+
+.transform .b1 {
+    /* transform: rotate(360deg); This is the z axis like a pin is through the middle */
+     /* we can rotate with several units: degrees, radians, gradians and turns */
+	/* transform: rotate(6.28rad); */
+    /* 50 grad is similar to 45 deg */
+	/* transform: rotate(400grad); */
+	transform: rotate(1turn);
+	transition: transform 1s;
+}
+
+.transform .b1:hover {
+	transform: rotate(0deg);
+}
+
+.transform .b2 {
+	transform: scale(1);
+	transition: transform 1s;
+}
+
+.transform .b2:hover {
+    transform: scale(3);
+	/* transform: scaleX(3);
+	transform: scaleY(3); */
+}
+
+.transform .b3 {
+	/* - means up + means down... you wont notice the effect of the z translate because it is moving into the screen, but it is an option */
+	/* transform: translateY(50px);
+	transform: translateX(50px);
+	transform: translateZ(50px); */
+	transform: translate(0 0);
+	transition: transform 1s;
+}
+
+.transform .b3:hover {
+	/* using just one value for translate() assumes x-axis */
+     transform: translate(50px);
+	 /* transform: translate(50px, -100px); */
+}
+
+.transform .b4 {
+      /* transform: skew(0, 0); */ 
+	  /* rotate and transform are applied in order, you can inter change and check */
+	  /* transform: rotate(30deg) translate(50px); */
+      transform: rotate(45deg);
+      /* transform-origin: bottom; */
+	  transform-origin: 0 0;	
+
+	  transition: transform 1s;
+}
+
+.transform .b4:hover {
+       /* transform: skew(45deg, 45deg); */
+	   transform: rotate(0) translate(0);
+}
+
+/* ANIMATION */
+
+.animation .b1 {
+	/* animation: name duration timing-function delay iteration-count direction fill-mode; */
+
+	animation-name: slide;
+	animation-duration: 2s;
+	/* animation-fill-mode: forwards; */
+	/* fill mode  backwards pulls the starting keyframe before the animation starts, so it doesnt jump */
+
+	/* fill modeforwards leaves the last keyframe afetr the animation finishes, so it doesnt reset, we can do both too. */
+	animation-fill-mode: both;
+	animation-delay: 1s;
+}
+
+/* The animation that will be applied. this can be applied to any element we want. It is a preset pattern and not tied to a specific selector */
+@keyframes slide {
+	from {
+        transform: translate(0);
+	}
+	to {
+        transform: translate(300px);
+	}
+}
+
+.animation .b2 {
+	animation-name: slide;
+	animation-duration: 1s;
+
+	/* iteration count can be a number of times it shoudld repeat or infinite */
+	animation-iteration-count: infinite;
+
+	/* direction allows us to reverse the animation, oor have it alternate */
+	/* animation-direction: reverse; */
+	animation-direction: alternate;
+}
+
+.animation .b3 {
+	animation-name: spin;
+	animation-duration: 5s;
+
+	animation-iteration-count: 2;
+	animation-direction: alternate;
+}
+
+@keyframes spin {
+	0% {
+      transform: translate(0px) rotate(0turn);
+	}
+	50% {
+	  transform: translate(500px) rotate(-1turn)
+	}
+	100% {
+		transform: translate(-500px) rotate(1turn)
+	  }
+	  /* keyframe is like a  for the animation to follow not the time it takes */
+}
+
+.animation .b4 {
+	animation: slide 5s ease-in 1s infinite alternate;
+}
+
+@keyframes slide {
+	0% {
+      transform: translate(0);
+	}
+	0% {
+		transform: translate(-500px);
+	  }
+}	  
